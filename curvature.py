@@ -149,7 +149,7 @@ for i in range(n_joints):
                 gamma_val += MJeffinv[i, l] * Gamma1st[l, j, k]
             Gamma2nd[i, j, k] = sp.simplify(gamma_val)
 
-print("Gamma2nd (Christoffel Symbols of the Second Kind) computed.")
+print("Christoffel symbols of the second kind computed.")
 
 # 14. Symbolic Riemannian Curvature Tensor Calculation
 # Define the Riemann computation function before use
@@ -178,6 +178,8 @@ n = n_joints
 RiemannContra = sp.MutableDenseNDimArray.zeros(n, n, n, n)
 RiemannContra = compute_riemann(Gamma2nd, Theta, n)
 
+print("Contravariant Riemann Tensor structure computed.")
+
 # 15. Compute RiemannCovar (Fully Covariant Riemann Tensor)
 # R_{lijk} = sum_m ( g_{lm} * R^m_{ijk} )
 RiemannCovar = sp.MutableDenseNDimArray.zeros(n_joints, n_joints, n_joints, n_joints)
@@ -191,6 +193,8 @@ for i in range(n_joints):
                     # RiemannContra was computed in the previous step
                     sum_term += MJeff[l, m_idx] * RiemannContra[m_idx, i, j, k]
                 RiemannCovar[l, i, j, k] = sp.simplify(sum_term)
+
+print("Fully Covariant Riemann Tensor structure computed.")
 
 # 16. Compute Gaussian Curvature (K)
 # For a 2D surface, K = R_{1212} / det(g)
@@ -217,7 +221,3 @@ plt.ylabel("Curvature $K$")
 plt.grid(True, linestyle='--')
 plt.axhline(0, color='black', lw=1)
 plt.show()
-
-# Example of the nested loop logic for the Riemann Tensor in Python
-# This mimics the logic in snippet_1 of curvature.m
-print("Symbolic Riemann Tensor structure initialized.")
