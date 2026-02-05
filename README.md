@@ -1,8 +1,9 @@
-torusControlLaw: Riemannian Geometry & HJB Optimal Control
+torusControlLaw: Riemannian Geometry & Hamilton-Jacobi-Bellman (HJB) Optimal Control
 
 This repository provides a complete pipeline for analyzing and controlling a 2-link robotic manipulator within its configuration space (C-space), modeled as a 2-Torus (T2).
 
 The project transitions from high-level differential geometry to real-time optimal control using Hamilton-Jacobi-Bellman (HJB) equations.
+
 🚀 Features
 
     Symbolic Riemannian Metric: Automated derivation of the Mass Matrix (gij​) using Euler-Lagrange equations.
@@ -16,10 +17,12 @@ The project transitions from high-level differential geometry to real-time optim
 
 The robot's kinetic energy defines the Riemannian metric. For this 2-link system, the metric tensor is:
 g(θ)=(M11​(θ2​)M21​(θ2​)​M12​(θ2​)M22​​)
+
 2. Gaussian Curvature (K)
 
 We calculate the curvature to understand how "warped" the robot's space is. A non-zero K implies that the shortest path (geodesic) is not a straight line in joint coordinates:
-K=det(g)R1212​​
+K=det(g)R1212​
+
 3. Optimal Control Law (HJB)
 
 To move from point A to B with minimum energy, we solve the HJB equation for the value function V(q,p):
